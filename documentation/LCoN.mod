@@ -4,8 +4,8 @@ tags={
 	"Balance"
 	"Military"
 }
-name="Logistical Capacity for Navies"
+name="Better Mechanics : Logistical Capacity for Navies"
 picture="thumbnail.png"
-supported_version="1.17.4.0"
-path="C:/Users/Orea/Documents/Paradox Interactive/Hearts of Iron IV/mod/LCoN"
+supported_version="1.17.*"
+path="mod/LCoN"
 remote_file_id="3659193471"

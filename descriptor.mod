@@ -4,7 +4,7 @@ tags={
 	"Balance"
 	"Military"
 }
-name="Logistical Capacity for Navies"
+name="Better Mechanics : Logistical Capacity for Navies"
 picture="thumbnail.png"
-supported_version="1.17.4.0"
+supported_version="1.17.*"
 remote_file_id="3659193471"
