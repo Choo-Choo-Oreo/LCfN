@@ -82,11 +82,19 @@ calculate_naval_capacity_logistics_formula = {
 			calculate_naval_capacity_logistics_cubic = yes
 		}
 	}
-	# Create display variables for the tooltip
+	# Dockyards
 	set_variable = { var = dockyard_weighted_value value = num_of_naval_factories }
 	multiply_variable = { var = dockyard_weighted_value value = @dockyard_weight }
-	set_variable = { var = total_other_factories_display value = num_of_military_factories }
-	add_to_variable = { var = total_other_factories_display value = num_of_civilian_factories }
+	
+	# Military Factories
+	set_variable = { var = temp_mil_factories value = num_of_military_factories }
+	multiply_variable = { var = temp_mil_factories value = @mil_weight }
+	
+	# Civilian Factories
+	set_variable = { var = temp_civ_factories value = num_of_civilian_factories }
+	multiply_variable = { var = temp_civ_factories value = @civ_weight }
+
+	# Promotion of weights for localization text [?weight_value]
 	set_variable = { var = doc_weight_value value = @dockyard_weight }
 	set_variable = { var = mil_weight_value value = @mil_weight }
 	set_variable = { var = civ_weight_value value = @civ_weight }
