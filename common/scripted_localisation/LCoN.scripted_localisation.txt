@@ -1,14 +1,25 @@
 defined_text = {
+	name = LCoN_load_type_loc
+	text = {
+		trigger = { has_game_rule = { rule = LCoN_weight_rule option = WEIGHT_ON } }
+		localization_key = LCoN_load_weighted
+	}
+	text = {
+		localization_key = LCoN_load_standard
+	}
+}
+
+defined_text = {
 	name = LCoN_naval_count_loc
 	text = {
 		trigger = {
-			check_variable = { num_ships > calculated_naval_cap }
+			check_variable = { current_ship_load > calculated_naval_cap }
 		}
 		localization_key = LCoN_count_red
 	}
 	text = {
 		trigger = {
-			check_variable = { num_ships = calculated_naval_cap }
+			check_variable = { current_ship_load = calculated_naval_cap }
 		}
 		localization_key = LCoN_count_yellow
 	}
@@ -27,6 +38,21 @@ defined_text = {
 	}
 	text = {
 		localization_key = LCoN_mob_disabled_desc
+	}
+}
+
+defined_text = {
+	name = LCoN_upkeep_loc
+	text = {
+		trigger = {
+			has_game_rule = { rule = LCoN_strain_rule option = STRAIN_ON }
+			# Only show if the logic actually results in a penalty
+			check_variable = { infra_strain > 0 }
+		}
+		localization_key = LCoN_upkeep_desc
+	}
+	text = {
+		localization_key = LCoN_upkeep_none
 	}
 }
 

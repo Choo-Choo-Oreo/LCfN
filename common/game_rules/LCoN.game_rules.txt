@@ -1,3 +1,4 @@
+# "allow_achievements" status of being "YES/NO" is for if we intended common for usage of the rule. "YES" means we expect it to be commonly used, and "NO" means the rule is uncommonly used.
 LCoN_formula_selection = {
 	name = "LCoN_FORMULA_RULE"
 	group = "RULE_GROUP_GAMEPLAY"
@@ -75,6 +76,63 @@ LCoN_mobilization_scaling_rule = {
 		name = MOB_OFF
 		text = "LCoN_RULE_MOB_OFF"
 		desc = "LCoN_RULE_MOB_OFF_DESC"
+		allow_achievements = no
+	}
+}
+
+LCoN_weight_rule = {
+	name = "LCoN_RULE_WEIGHTING"
+	group = "RULE_GROUP_GAMEPLAY"
+	icon = GFX_unit_stats_icon
+
+	default = {
+		name = WEIGHT_ON
+		text = "LCoN_RULE_WEIGHT_ON"
+		desc = "LCoN_RULE_WEIGHT_ON_DESC"
 		allow_achievements = yes
+	}
+	option = {
+		name = WEIGHT_OFF
+		text = "LCoN_RULE_WEIGHT_OFF"
+		desc = "LCoN_RULE_WEIGHT_OFF_DESC"
+		allow_achievements = no
+	}
+}
+
+LCoN_scaling_logic_rule = {
+	name = "LCoN_RULE_SCALING_LOGIC"
+	group = "RULE_GROUP_GAMEPLAY"
+	icon = GFX_map_filter_ships_icon
+
+	default = {
+		name = LOGIC_DISTANCE
+		text = "LCoN_RULE_DISTANCE"
+		desc = "LCoN_RULE_DISTANCE_DESC"
+		allow_achievements = yes
+	}
+	option = {
+		name = LOGIC_PERCENT
+		text = "LCoN_RULE_PERCENT"
+		desc = "LCoN_RULE_PERCENT_DESC"
+		allow_achievements = no
+	}
+}
+
+LCoN_strain_rule = {
+	name = "LCoN_RULE_STRAIN"
+	group = "RULE_GROUP_GAMEPLAY"
+	icon = GFX_main_lobby_button_industrial_org
+	
+	default = {
+		name = STRAIN_ON
+		text = "LCoN_RULE_STRAIN_ON"
+		desc = "LCoN_RULE_STRAIN_ON_DESC"
+		allow_achievements = yes
+	}
+	option = {
+		name = STRAIN_OFF
+		text = "LCoN_RULE_STRAIN_OFF"
+		desc = "LCoN_RULE_STRAIN_OFF_DESC"
+		allow_achievements = no
 	}
 }

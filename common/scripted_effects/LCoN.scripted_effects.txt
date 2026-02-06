@@ -4,6 +4,18 @@
 @mil_weight = 0.5
 @civ_weight = 0.5
 
+# --- SHIP WEIGHTS ---
+@weight_ss = 1.0
+@weight_dd = 1.0
+@weight_cl = 2.0
+@weight_ca = 2.0
+@weight_bc = 4.0
+@weight_bb = 4.0
+@weight_cv = 5.0
+
+# --- UPKEEP SETTINGS ---
+@upkeep_per_dockyard = 0.005 # 0.5% penalty per dockyard owned
+
 # --- QUADRATIC & SIGMOID SETTINGS ---
 # Controls the steepness of the curve; a higher value makes the penalty/bonus ramp up more slowly.
 @scaling_divisor = 5000
@@ -166,31 +178,35 @@ calculate_naval_capacity_logistics_hyperbolic = {
 
 calculate_naval_capacity_logistics_debug = {
 	# Promote weight constants so they can be viewed in tooltips
+	set_variable = { var = num_battle_cruiser	value = num_ships_with_type@battle_cruiser }
 	set_variable = { var = num_battleship		value = num_ships_with_type@battleship }
 	set_variable = { var = num_carrier			value = num_ships_with_type@carrier }
 	set_variable = { var = num_destroyer		value = num_ships_with_type@destroyer }
 	set_variable = { var = num_heavy_cruiser	value = num_ships_with_type@heavy_cruiser }
 	set_variable = { var = num_light_cruiser	value = num_ships_with_type@light_cruiser }
 	set_variable = { var = num_submarine		value = num_ships_with_type@submarine }
+	set_variable = { var = num_support_ship		value = num_ships_with_type@support_ship }
 
 	log = "[Root.GetTag] Naval Cap: [?calculated_naval_cap] | Ships: [?num_ships] | Mod: [?LCoN_icd_ncd_value]"
 	log = "    Current Consumer Goods: [?current_cg_total|%Y] | Logistical Efficiency: [?econ_efficiency_factor|%G]"
-	log = "    Battleship: [?num_battleship] | Carriers: [?num_carrier] | Destroyers: [?num_destroyer] | Heavy Cruisers: [?num_heavy_cruiser] | Light Cruisers: [?num_light_cruiser] | Submarines: [?num_submarine]"
+	log = "    Battlecruiser: [?num_battle_cruiser] | Battleship: [?num_battleship] | Carriers: [?num_carrier] | Destroyers: [?num_destroyer] | Heavy Cruisers: [?num_heavy_cruiser] | Light Cruisers: [?num_light_cruiser] | Submarines: [?num_submarine] | Support: [?num_support_ship]"
 }
 
 calculate_naval_capacity_logistics_formula = {
 	# --- STEP 1: INITIAL RAW CAPACITY ---
-	set_temp_variable = { var = calculated_naval_cap value = num_of_naval_factories }
-	multiply_temp_variable = { var = calculated_naval_cap value = @dockyard_weight }
-	
-	set_temp_variable = { var = temp_mil_factories value = num_of_military_factories }
-	multiply_temp_variable = { var = temp_mil_factories value = @mil_weight }
+	set_temp_variable = { var = calculated_naval_cap value = 0 }
+	# Breakdown for the detailed industrial tooltip
+	set_variable = { var = nav_dockyards value = num_of_naval_factories }
+	multiply_variable = { var = nav_dockyards value = @dockyard_weight }
+	add_to_temp_variable = { var = calculated_naval_cap value = nav_dockyards }
 
-	set_temp_variable = { var = temp_civ_factories value = num_of_civilian_factories }
-	multiply_temp_variable = { var = temp_civ_factories value = @civ_weight }
-	
-	add_to_temp_variable = { var = calculated_naval_cap value = temp_mil_factories }
-	add_to_temp_variable = { var = calculated_naval_cap value = temp_civ_factories }
+	set_variable = { var = mil_factories value = num_of_military_factories }
+	multiply_variable = { var = mil_factories value = @mil_weight }
+	add_to_temp_variable = { var = calculated_naval_cap value = mil_factories }
+
+	set_variable = { var = civ_factories value = num_of_civilian_factories }
+	multiply_variable = { var = civ_factories value = @civ_weight }
+	add_to_temp_variable = { var = calculated_naval_cap value = civ_factories }
 
 	round_temp_variable = calculated_naval_cap
 
@@ -203,44 +219,105 @@ calculate_naval_capacity_logistics_formula = {
 		
 		# 1. Check standard factor (Usually Stability)
 		set_temp_variable = { var = check_factor value = modifier@consumer_goods_factor }
-		log = "[Root.GetTag] DIAGNOSTIC: Raw Factor = [?check_factor]"
 
 		# 2. Check the "Factories" version (Often where Spirits live)
 		set_temp_variable = { var = check_factories_modifier value = modifier@consumer_goods_factories }
-		log = "[Root.GetTag] DIAGNOSTIC: Factories Modifier = [?check_factories_modifier]"
 
 		# 1. Base CG from Law
 		set_temp_variable = { var = current_cg_total value = modifier@consumer_goods_expected_value }
-		log = "[Root.GetTag] LOG 1: Base Law Value = [?current_cg_total]"
 		
 		# Create the multiplier: (1 + consumer_goods_factor)
 		set_temp_variable = { var = cg_multiplier value = 1.0 }
 		add_to_temp_variable = { var = cg_multiplier value = modifier@consumer_goods_factor }
-		log = "[Root.GetTag] LOG 2: Multiplier (1 + Factor) = [?cg_multiplier]"
 		
 		# Final Multiply: Base * Multiplier
 		multiply_temp_variable = { var = current_cg_total value = cg_multiplier }
-		log = "[Root.GetTag] LOG 3: Resulting CG Total = [?current_cg_total]"
 
 		# Apply to Efficiency
 		subtract_from_temp_variable = { var = econ_efficiency_factor value = current_cg_total }
 		clamp_temp_variable = { var = econ_efficiency_factor min = 0.0 max = 1.0 }
-		log = "[Root.GetTag] LOG 4: Final Efficiency Factor = [?econ_efficiency_factor]"
 
 		# Throttling the Cap
 		multiply_temp_variable = { var = calculated_naval_cap value = econ_efficiency_factor }
-		log = "[Root.GetTag] LOG 5: Throttling the Cap [?calculated_naval_cap]"
 		
 		# Promote for UI
 		set_variable = { var = current_cg_total value = current_cg_total }
 		set_variable = { var = econ_efficiency_factor value = econ_efficiency_factor }
-		log = "[Root.GetTag] LOG 6: Promote for UI (current_cg_total) [?current_cg_total]"
-		log = "[Root.GetTag] LOG 7: Promote for UI (econ_efficiency_factor) [?econ_efficiency_factor]"
 	}
 
-	# --- STEP 3: RUN THE CHOSEN CURVE ---
+	# --- STEP 3: CALCULATE SHIP LOAD ---
+	IF = {
+		LIMIT = { has_game_rule = { rule = LCoN_weight_rule option = WEIGHT_ON } }
+		set_temp_variable = { var = current_ship_load value = 0 }
+		
+		# Summing weighted types
+		set_variable = { var = t_bc value = num_ships_with_type@battle_cruiser }
+		multiply_variable = { var = t_bc value = @weight_bc }
+		add_to_temp_variable = { var = current_ship_load value = t_bc }
+
+		set_variable = { var = t_bb value = num_ships_with_type@battleship }
+		multiply_variable = { var = t_bb value = @weight_bb }
+		add_to_temp_variable = { var = current_ship_load value = t_bb }
+
+		set_variable = { var = t_cv value = num_ships_with_type@carrier }
+		multiply_variable = { var = t_cv value = @weight_cv }
+		add_to_temp_variable = { var = current_ship_load value = t_cv }
+
+		set_variable = { var = t_dd value = num_ships_with_type@destroyer }
+		multiply_variable = { var = t_dd value = @weight_dd }
+		add_to_temp_variable = { var = current_ship_load value = t_dd }
+
+		set_variable = { var = t_ca value = num_ships_with_type@heavy_cruiser }
+		multiply_variable = { var = t_ca value = @weight_ca }
+		add_to_temp_variable = { var = current_ship_load value = t_ca }
+
+		set_variable = { var = t_cl value = num_ships_with_type@light_cruiser }
+		multiply_variable = { var = t_cl value = @weight_cl }
+		add_to_temp_variable = { var = current_ship_load value = t_cl }
+
+		set_variable = { var = t_ss value = num_ships_with_type@submarine }
+		multiply_variable = { var = t_ss value = @weight_ss }
+		add_to_temp_variable = { var = current_ship_load value = t_ss }
+
+		# --- MISCELLANEOUS CALCULATION ---
+		# Sum all known subunits into a temp variable
+		set_temp_variable = { var = total_known_ships value = num_ships_with_type@battle_cruiser }
+		add_to_temp_variable = { var = total_known_ships value = num_ships_with_type@battleship }
+		add_to_temp_variable = { var = total_known_ships value = num_ships_with_type@carrier }
+		add_to_temp_variable = { var = total_known_ships value = num_ships_with_type@destroyer }
+		add_to_temp_variable = { var = total_known_ships value = num_ships_with_type@heavy_cruiser }
+		add_to_temp_variable = { var = total_known_ships value = num_ships_with_type@light_cruiser }
+		add_to_temp_variable = { var = total_known_ships value = num_ships_with_type@submarine }
+
+		# Subtract known from total to find Misc
+		set_variable = { var = t_misc value = num_ships }
+		subtract_from_variable = { var = t_misc value = total_known_ships }
+		
+		# Add Misc to load (Weight 1.0)
+		add_to_temp_variable = { var = current_ship_load value = t_misc }
+
+		# Double the calculated naval capacity to manage higher ship load
+		multiply_temp_variable = { var = calculated_naval_cap value = 2 }
+
+		# Finalize the non-temp variable for the UI/Logic
+		set_variable = { var = current_ship_load value = current_ship_load }
+	}
+	ELSE_IF = {
+		set_variable = { var = current_ship_load value = num_ships }
+	}
+
+	# --- STEP 4: RUN THE CHOSEN CURVE ---
 	set_temp_variable = { var = capacity_diff value = calculated_naval_cap }
-	subtract_from_temp_variable = { var = capacity_diff value = num_ships }
+	subtract_from_temp_variable = { var = capacity_diff value = current_ship_load }
+
+	IF = {
+		LIMIT = { has_game_rule = { rule = LCoN_scaling_logic_rule option = LOGIC_PERCENT } }
+		# Math: (Diff / Cap) * 100. 
+		# Result: 100 = 0% utilized (Max bonus), 0 = 100% utilized (Neutral), Negative = Penalty.
+		divide_temp_variable = { var = capacity_diff value = calculated_naval_cap }
+		multiply_temp_variable = { var = capacity_diff value = 100 }
+	}
+
 	IF = {
 		LIMIT = { has_game_rule = { rule = LCoN_formula_selection option = LINEAR } }
 		calculate_naval_capacity_logistics_linear = yes
@@ -266,8 +343,33 @@ calculate_naval_capacity_logistics_formula = {
 		calculate_naval_capacity_logistics_hyperbolic = yes
 	}
 
-	# --- STEP 4: FINAL MODIFIER PROCESSING ---
+	# --- STEP 5: FINAL MODIFIER PROCESSING ---
 	set_variable = { var = LCoN_icd_ncd_value value = curve_value }
+
+	# Infrastructure Strain Multiplier
+	if = {
+		limit = { has_game_rule = { rule = LCoN_strain_rule option = STRAIN_ON } }
+		# Calculate Strain: (Dockyards * 0.005) * (2.0 - Econ_Factor)
+		set_variable = { var = infra_strain value = num_of_naval_factories }
+		multiply_variable = { var = infra_strain value = @upkeep_per_dockyard }
+		
+		set_temp_variable = { var = mob_mult value = 2.0 }
+		subtract_from_temp_variable = { var = mob_mult value = econ_efficiency_factor }
+		multiply_variable = { var = infra_strain value = mob_mult }
+
+		# Multiplier Logic: Output = Bonus / (1.0 + Strain)
+		set_temp_variable = { var = infra_divisor value = 1.0 }
+		# Clamp strain to 0 to prevent negative divisors
+		if = {
+			limit = { check_variable = { infra_strain < 0 } }
+			set_variable = { var = infra_strain value = 0 }
+		}
+		add_to_temp_variable = { var = infra_divisor value = infra_strain }
+		divide_variable = { var = LCoN_icd_ncd_value value = infra_divisor }
+	}
+	else = {
+		set_variable = { var = infra_strain value = 0 }
+	}
 
 	# Safety Clamp: Prevents dockyards from reaching 0% or negative output
 	IF = {
@@ -275,26 +377,25 @@ calculate_naval_capacity_logistics_formula = {
 		clamp_variable = { var = LCoN_icd_ncd_value min = -1.0 }
 	}
 
-	# --- STEP 5: VARIABLE PROMOTION & LOGGING ---
+	# --- STEP 7: VARIABLE PROMOTION & LOGGING ---
 	# Promote the throttled cap to a permanent variable for the UI
 	set_variable = { var = calculated_naval_cap value = calculated_naval_cap }
 	round_variable = calculated_naval_cap
 
-	# Breakdown for the detailed industrial tooltip
-	set_variable = { var = dockyard_weighted_value value = num_of_naval_factories }
-	multiply_variable = { var = dockyard_weighted_value value = @dockyard_weight }
-	
-	set_variable = { var = temp_mil_factories value = num_of_military_factories }
-	multiply_variable = { var = temp_mil_factories value = @mil_weight }
-	
-	set_variable = { var = temp_civ_factories value = num_of_civilian_factories }
-	multiply_variable = { var = temp_civ_factories value = @civ_weight }
-
 	# Promote weight constants so they can be viewed in tooltips
+	set_variable = { var = ss_weight_value value = @weight_ss }
+	set_variable = { var = dd_weight_value value = @weight_dd }
+	set_variable = { var = cl_weight_value value = @weight_cl }
+	set_variable = { var = ca_weight_value value = @weight_ca }
+	set_variable = { var = bc_weight_value value = @weight_bc }
+	set_variable = { var = bb_weight_value value = @weight_bb }
+	set_variable = { var = cv_weight_value value = @weight_cv }
+
 	set_variable = { var = doc_weight_value value = @dockyard_weight }
 	set_variable = { var = mil_weight_value value = @mil_weight }
 	set_variable = { var = civ_weight_value value = @civ_weight }
 
+	# Prevent game.log tracking of ship count behind FOW
 	IF = {
 		LIMIT = { is_debug = yes }
 		calculate_naval_capacity_logistics_debug = yes
