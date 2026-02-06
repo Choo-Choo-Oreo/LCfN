@@ -14,7 +14,8 @@
 @weight_cv = 5.0
 
 # --- UPKEEP SETTINGS ---
-@upkeep_per_dockyard = 0.005 # 0.5% penalty per dockyard owned
+# 0.5% penalty per dockyard owned
+@upkeep_per_dockyard = 0.005
 
 # --- QUADRATIC & SIGMOID SETTINGS ---
 # Controls the steepness of the curve; a higher value makes the penalty/bonus ramp up more slowly.
