@@ -1,4 +1,4 @@
-version="1.5.0"
+version="1.8.0"
 tags={
 	"Gameplay"
 	"Balance"
@@ -6,7 +6,6 @@ tags={
 }
 name="Better Mechanics : Logistical Capacity for Navies"
 picture="thumbnail.png"
-supported_version="1.17.*"
 dependencies={
 	"Road to 56"
 	"The Road to 56"
@@ -96,4 +95,5 @@ dependencies={
 	"*UMC* Technology Completed"
 	"*UMC* Generic Completed"
 }
+supported_version="1.17.*"
 remote_file_id="3659193471"
