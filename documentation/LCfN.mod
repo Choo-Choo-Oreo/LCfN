@@ -7,5 +7,5 @@ tags={
 name="Better Mechanics : Logistical Capacity for Navies"
 picture="thumbnail.png"
 supported_version="1.17.*"
-path="mod/LCoN"
+path="mod/LCfN"
 remote_file_id="3659193471"
