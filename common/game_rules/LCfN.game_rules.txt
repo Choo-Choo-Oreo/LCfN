@@ -1,138 +1,144 @@
 # "allow_achievements" status of being "YES/NO" is for if we intended common for usage of the rule. "YES" means we expect it to be commonly used, and "NO" means the rule is uncommonly used.
-LCoN_formula_selection = {
-	name = "LCoN_FORMULA_RULE"
+LCfN_formula_selection = {
+	name = "LCfN_FORMULA_RULE"
 	group = "RULE_GROUP_GAMEPLAY"
 	icon = GFX_game_rule_navy_limits
 
 	option = {
 		name = LINEAR
-		text = "LCoN_RULE_LINEAR"
-		desc = "LCoN_RULE_LINEAR_DESC"
+		text = "LCfN_RULE_LINEAR"
+		desc = "LCfN_RULE_LINEAR_DESC"
 		allow_achievements = yes
 	}
 	option = {
 		name = QUADRATIC
-		text = "LCoN_RULE_QUADRATIC"
-		desc = "LCoN_RULE_QUADRATIC_DESC"
+		text = "LCfN_RULE_QUADRATIC"
+		desc = "LCfN_RULE_QUADRATIC_DESC"
 		allow_achievements = yes
 	}
 	default = {
 		name = SIGMOID
-		text = "LCoN_RULE_SIGMOID"
-		desc = "LCoN_RULE_SIGMOID_DESC"
+		text = "LCfN_RULE_SIGMOID"
+		desc = "LCfN_RULE_SIGMOID_DESC"
 		allow_achievements = yes
 	}
 	option = {
 		name = LOGARITHMIC
-		text = "LCoN_RULE_LOGARITHMIC"
-		desc = "LCoN_RULE_LOGARITHMIC_DESC"
+		text = "LCfN_RULE_LOGARITHMIC"
+		desc = "LCfN_RULE_LOGARITHMIC_DESC"
 		allow_achievements = yes
 	}
 	option = {
 		name = STEP
-		text = "LCoN_RULE_STEP"
-		desc = "LCoN_RULE_STEP_DESC"
+		text = "LCfN_RULE_STEP"
+		desc = "LCfN_RULE_STEP_DESC"
 		allow_achievements = yes
 	}
 	option = {
 		name = HYPERBOLIC
-		text = "LCoN_RULE_HYPERBOLIC"
-		desc = "LCoN_RULE_HYPERBOLIC_DESC"
+		text = "LCfN_RULE_HYPERBOLIC"
+		desc = "LCfN_RULE_HYPERBOLIC_DESC"
 		allow_achievements = yes
 	}
 }
 
-LCoN_safety_clamp_rule = {
-	name = "LCoN_RULE_CLAMP"
+LCfN_safety_clamp_rule = {
+	name = "LCfN_RULE_CLAMP"
 	group = "RULE_GROUP_GAMEPLAY"
 	icon = GFX_military_access_docking_rights
 
 	default = {
 		name = CLAMP_ON
-		text = "LCoN_RULE_CLAMP_ON"
-		desc = "LCoN_RULE_CLAMP_ON_DESC"
+		text = "LCfN_RULE_CLAMP_ON"
+		desc = "LCfN_RULE_CLAMP_ON_DESC"
 		allow_achievements = yes
 	}
 	option = {
 		name = CLAMP_OFF
-		text = "LCoN_RULE_CLAMP_OFF"
-		desc = "LCoN_RULE_CLAMP_OFF_DESC"
+		text = "LCfN_RULE_CLAMP_OFF"
+		desc = "LCfN_RULE_CLAMP_OFF_DESC"
 		allow_achievements = yes
+	}
+	option = {
+		name = UNCLAMPED_PENALTY
+		text = "LCfN_RULE_UNCLAMPED_PENALTY"
+		desc = "LCfN_RULE_UNCLAMPED_PENALTY_DESC"
+		allow_achievements = no
 	}
 }
 
-LCoN_mobilization_scaling_rule = {
-	name = "LCoN_RULE_MOBILIZATION"
+LCfN_mobilization_scaling_rule = {
+	name = "LCfN_RULE_MOBILIZATION"
 	group = "RULE_GROUP_GAMEPLAY"
 	icon = GFX_lend_lease
 
 	default = {
 		name = MOB_ON
-		text = "LCoN_RULE_MOB_ON"
-		desc = "LCoN_RULE_MOB_ON_DESC"
+		text = "LCfN_RULE_MOB_ON"
+		desc = "LCfN_RULE_MOB_ON_DESC"
 		allow_achievements = yes
 	}
 	option = {
 		name = MOB_OFF
-		text = "LCoN_RULE_MOB_OFF"
-		desc = "LCoN_RULE_MOB_OFF_DESC"
+		text = "LCfN_RULE_MOB_OFF"
+		desc = "LCfN_RULE_MOB_OFF_DESC"
 		allow_achievements = no
 	}
 }
 
-LCoN_weight_rule = {
-	name = "LCoN_RULE_WEIGHTING"
+LCfN_weight_rule = {
+	name = "LCfN_RULE_WEIGHTING"
 	group = "RULE_GROUP_GAMEPLAY"
 	icon = GFX_unit_stats_icon
 
 	default = {
 		name = WEIGHT_ON
-		text = "LCoN_RULE_WEIGHT_ON"
-		desc = "LCoN_RULE_WEIGHT_ON_DESC"
+		text = "LCfN_RULE_WEIGHT_ON"
+		desc = "LCfN_RULE_WEIGHT_ON_DESC"
 		allow_achievements = yes
 	}
 	option = {
 		name = WEIGHT_OFF
-		text = "LCoN_RULE_WEIGHT_OFF"
-		desc = "LCoN_RULE_WEIGHT_OFF_DESC"
+		text = "LCfN_RULE_WEIGHT_OFF"
+		desc = "LCfN_RULE_WEIGHT_OFF_DESC"
 		allow_achievements = no
 	}
 }
 
-LCoN_scaling_logic_rule = {
-	name = "LCoN_RULE_SCALING_LOGIC"
+LCfN_scaling_logic_rule = {
+	name = "LCfN_RULE_SCALING_LOGIC"
 	group = "RULE_GROUP_GAMEPLAY"
 	icon = GFX_map_filter_ships_icon
 
 	default = {
 		name = LOGIC_DISTANCE
-		text = "LCoN_RULE_DISTANCE"
-		desc = "LCoN_RULE_DISTANCE_DESC"
+		text = "LCfN_RULE_DISTANCE"
+		desc = "LCfN_RULE_DISTANCE_DESC"
 		allow_achievements = yes
 	}
 	option = {
 		name = LOGIC_PERCENT
-		text = "LCoN_RULE_PERCENT"
-		desc = "LCoN_RULE_PERCENT_DESC"
+		text = "LCfN_RULE_PERCENT"
+		desc = "LCfN_RULE_PERCENT_DESC"
 		allow_achievements = no
 	}
 }
 
-LCoN_strain_rule = {
-	name = "LCoN_RULE_STRAIN"
+LCfN_strain_rule = {
+	name = "LCfN_RULE_STRAIN"
 	group = "RULE_GROUP_GAMEPLAY"
 	icon = GFX_main_lobby_button_industrial_org
 	
 	default = {
 		name = STRAIN_ON
-		text = "LCoN_RULE_STRAIN_ON"
-		desc = "LCoN_RULE_STRAIN_ON_DESC"
+		text = "LCfN_RULE_STRAIN_ON"
+		desc = "LCfN_RULE_STRAIN_ON_DESC"
 		allow_achievements = yes
 	}
 	option = {
 		name = STRAIN_OFF
-		text = "LCoN_RULE_STRAIN_OFF"
-		desc = "LCoN_RULE_STRAIN_OFF_DESC"
+		text = "LCfN_RULE_STRAIN_OFF"
+		desc = "LCfN_RULE_STRAIN_OFF_DESC"
 		allow_achievements = no
 	}
 }

@@ -49,7 +49,7 @@
 # Scaling factor to keep numbers readable within the engine.
 @hyper_scaler = 1
 
-calculate_naval_capacity_logistics_linear = {
+LCfN_calculate_naval_capacity_logistics_linear = {
 	# --- STEP 1: LINEAR SCALING ---
 	set_temp_variable = { var = curve_value value = capacity_diff }
 	divide_temp_variable = { var = curve_value value = @linear_divisor } 
@@ -67,7 +67,7 @@ calculate_naval_capacity_logistics_linear = {
 	}
 }
 
-calculate_naval_capacity_logistics_quadratic = {
+LCfN_calculate_naval_capacity_logistics_quadratic = {
 	# --- STEP 1: CREATE THE CURVE ---
 	set_temp_variable = { var = curve_value value = capacity_diff }
 	multiply_temp_variable = { var = curve_value value = capacity_diff }
@@ -82,8 +82,8 @@ calculate_naval_capacity_logistics_quadratic = {
 	}
 }
 
-calculate_naval_capacity_logistics_sigmoid = {
-	calculate_naval_capacity_logistics_quadratic = yes
+LCfN_calculate_naval_capacity_logistics_sigmoid = {
+	LCfN_calculate_naval_capacity_logistics_quadratic = yes
 
 	# --- STEP 4: SIGMOID CLAMP ---
 	set_temp_variable = { var = logic_cap value = num_of_naval_factories }
@@ -102,7 +102,7 @@ calculate_naval_capacity_logistics_sigmoid = {
 	}
 }
 
-calculate_naval_capacity_logistics_logarithmic = {
+LCfN_calculate_naval_capacity_logistics_logarithmic = {
 	# --- DIMINISHING RETURNS CURVE (Michaelis-Menten approximation) ---
 	# Math: Modifier = (Max_Limit * Diff) / (Diff + Flattening_Factor)
 	# Result: Grows fast at first, then flattens out forever.
@@ -128,7 +128,7 @@ calculate_naval_capacity_logistics_logarithmic = {
 	}
 }
 
-calculate_naval_capacity_logistics_step = {
+LCfN_calculate_naval_capacity_logistics_step = {
 	# Default: Small bonus if under cap
 	set_temp_variable = { var = curve_value value = 0.1 }
 
@@ -149,7 +149,7 @@ calculate_naval_capacity_logistics_step = {
 	}
 }
 
-calculate_naval_capacity_logistics_hyperbolic = {
+LCfN_calculate_naval_capacity_logistics_hyperbolic = {
 	# If Under Cap: Standard Linear Bonus
 	if = {
 		limit = { check_variable = { var = capacity_diff value = 0 compare = greater_than_or_equals } }
@@ -177,7 +177,7 @@ calculate_naval_capacity_logistics_hyperbolic = {
 	}
 }
 
-calculate_naval_capacity_logistics_debug = {
+LCfN_calculate_naval_capacity_logistics_debug = {
 	# Promote weight constants so they can be viewed in tooltips
 	set_variable = { var = num_battle_cruiser	value = num_ships_with_type@battle_cruiser }
 	set_variable = { var = num_battleship		value = num_ships_with_type@battleship }
@@ -188,12 +188,12 @@ calculate_naval_capacity_logistics_debug = {
 	set_variable = { var = num_submarine		value = num_ships_with_type@submarine }
 	set_variable = { var = num_support_ship		value = num_ships_with_type@support_ship }
 
-	log = "[Root.GetTag] Naval Cap: [?calculated_naval_cap] | Ships: [?num_ships] | Mod: [?LCoN_icd_ncd_value]"
+	log = "[Root.GetTag] Naval Cap: [?calculated_naval_cap] | Ships: [?num_ships] | Mod: [?LCfN_icd_ncd_value]"
 	log = "    Current Consumer Goods: [?current_cg_total|%Y] | Logistical Efficiency: [?econ_efficiency_factor|%G]"
 	log = "    Battlecruiser: [?num_battle_cruiser] | Battleship: [?num_battleship] | Carriers: [?num_carrier] | Destroyers: [?num_destroyer] | Heavy Cruisers: [?num_heavy_cruiser] | Light Cruisers: [?num_light_cruiser] | Submarines: [?num_submarine] | Support: [?num_support_ship]"
 }
 
-calculate_naval_capacity_logistics_formula = {
+LCfN_calculate_naval_capacity_logistics_formula = {
 	# --- STEP 1: INITIAL RAW CAPACITY ---
 	set_temp_variable = { var = calculated_naval_cap value = 0 }
 	# Breakdown for the detailed industrial tooltip
@@ -216,7 +216,7 @@ calculate_naval_capacity_logistics_formula = {
 	set_temp_variable = { var = econ_efficiency_factor value = 1.0 }
 
 	IF = { # --- ECONOMIC MOBILIZATION SCALING ---
-		LIMIT = { has_game_rule = { rule = LCoN_mobilization_scaling_rule option = MOB_ON } }
+		LIMIT = { has_game_rule = { rule = LCfN_mobilization_scaling_rule option = MOB_ON } }
 		
 		# 1. Check standard factor (Usually Stability)
 		set_temp_variable = { var = check_factor value = modifier@consumer_goods_factor }
@@ -245,7 +245,7 @@ calculate_naval_capacity_logistics_formula = {
 
 	# --- STEP 3: CALCULATE SHIP LOAD ---
 	IF = {
-		LIMIT = { has_game_rule = { rule = LCoN_weight_rule option = WEIGHT_ON } }
+		LIMIT = { has_game_rule = { rule = LCfN_weight_rule option = WEIGHT_ON } }
 		set_temp_variable = { var = current_ship_load value = 0 }
 		
 		# Summing weighted types
@@ -309,7 +309,7 @@ calculate_naval_capacity_logistics_formula = {
 	subtract_from_temp_variable = { var = capacity_diff value = current_ship_load }
 
 	IF = {
-		LIMIT = { has_game_rule = { rule = LCoN_scaling_logic_rule option = LOGIC_PERCENT } }
+		LIMIT = { has_game_rule = { rule = LCfN_scaling_logic_rule option = LOGIC_PERCENT } }
 		# Math: (Diff / Cap) * 100. 
 		# Result: 100 = 0% utilized (Max bonus), 0 = 100% utilized (Neutral), Negative = Penalty.
 		divide_temp_variable = { var = capacity_diff value = calculated_naval_cap }
@@ -317,36 +317,36 @@ calculate_naval_capacity_logistics_formula = {
 	}
 
 	IF = {
-		LIMIT = { has_game_rule = { rule = LCoN_formula_selection option = LINEAR } }
-		calculate_naval_capacity_logistics_linear = yes
+		LIMIT = { has_game_rule = { rule = LCfN_formula_selection option = LINEAR } }
+		LCfN_calculate_naval_capacity_logistics_linear = yes
 	}
 	ELSE_IF = { 
-		LIMIT = { has_game_rule = { rule = LCoN_formula_selection option = QUADRATIC } }
-		calculate_naval_capacity_logistics_quadratic = yes
+		LIMIT = { has_game_rule = { rule = LCfN_formula_selection option = QUADRATIC } }
+		LCfN_calculate_naval_capacity_logistics_quadratic = yes
 	}
 	ELSE_IF = {
-		LIMIT = { has_game_rule = { rule = LCoN_formula_selection option = SIGMOID } }
-		calculate_naval_capacity_logistics_sigmoid = yes
+		LIMIT = { has_game_rule = { rule = LCfN_formula_selection option = SIGMOID } }
+		LCfN_calculate_naval_capacity_logistics_sigmoid = yes
 	}
 	ELSE_IF = {
-		LIMIT = { has_game_rule = { rule = LCoN_formula_selection option = LOGARITHMIC } }
-		calculate_naval_capacity_logistics_logarithmic = yes
+		LIMIT = { has_game_rule = { rule = LCfN_formula_selection option = LOGARITHMIC } }
+		LCfN_calculate_naval_capacity_logistics_logarithmic = yes
 	}
 	ELSE_IF = {
-		LIMIT = { has_game_rule = { rule = LCoN_formula_selection option = STEP } }
-		calculate_naval_capacity_logistics_step = yes
+		LIMIT = { has_game_rule = { rule = LCfN_formula_selection option = STEP } }
+		LCfN_calculate_naval_capacity_logistics_step = yes
 	}
 	ELSE_IF = {
-		LIMIT = { has_game_rule = { rule = LCoN_formula_selection option = HYPERBOLIC } }
-		calculate_naval_capacity_logistics_hyperbolic = yes
+		LIMIT = { has_game_rule = { rule = LCfN_formula_selection option = HYPERBOLIC } }
+		LCfN_calculate_naval_capacity_logistics_hyperbolic = yes
 	}
 
 	# --- STEP 5: FINAL MODIFIER PROCESSING ---
-	set_variable = { var = LCoN_icd_ncd_value value = curve_value }
+	set_variable = { var = LCfN_icd_ncd_value value = curve_value }
 
 	# Infrastructure Strain Multiplier
-	if = {
-		limit = { has_game_rule = { rule = LCoN_strain_rule option = STRAIN_ON } }
+	IF = {
+		LIMIT = { has_game_rule = { rule = LCfN_strain_rule option = STRAIN_ON } }
 		# Calculate Strain: (Dockyards * 0.005) * (2.0 - Econ_Factor)
 		set_variable = { var = infra_strain value = num_of_naval_factories }
 		multiply_variable = { var = infra_strain value = @upkeep_per_dockyard }
@@ -358,21 +358,29 @@ calculate_naval_capacity_logistics_formula = {
 		# Multiplier Logic: Output = Bonus / (1.0 + Strain)
 		set_temp_variable = { var = infra_divisor value = 1.0 }
 		# Clamp strain to 0 to prevent negative divisors
-		if = {
-			limit = { check_variable = { infra_strain < 0 } }
+		IF = {
+			LIMIT = { check_variable = { infra_strain < 0 } }
 			set_variable = { var = infra_strain value = 0 }
 		}
 		add_to_temp_variable = { var = infra_divisor value = infra_strain }
-		divide_variable = { var = LCoN_icd_ncd_value value = infra_divisor }
+		divide_variable = { var = LCfN_icd_ncd_value value = infra_divisor }
 	}
-	else = {
+	ELSE = {
 		set_variable = { var = infra_strain value = 0 }
 	}
 
-	# Safety Clamp: Prevents dockyards from reaching 0% or negative output
+	# --- STEP 6: SCALING & SAFETY CLAMPS ---
 	IF = {
-		LIMIT = { has_game_rule = { rule = LCoN_safety_clamp_rule option = CLAMP_ON } }
-		clamp_variable = { var = LCoN_icd_ncd_value min = -1.0 }
+		LIMIT = { has_game_rule = { rule = LCfN_safety_clamp_rule option = CLAMP_ON } }
+		clamp_variable = { var = LCfN_icd_ncd_value min = -1.0 } # Standard safety floor
+	}
+	ELSE_IF = {
+		LIMIT = { has_game_rule = { rule = LCfN_safety_clamp_rule option = UNCLAMPED_PENALTY } }
+		# Goal: Under-capacity gives a flat 100% efficiency (0 bonus)
+		IF = {
+			LIMIT = { check_variable = { LCfN_icd_ncd_value > 0 } }
+			set_variable = { var = LCfN_icd_ncd_value value = 0 }
+		}
 	}
 
 	# --- STEP 7: VARIABLE PROMOTION & LOGGING ---
@@ -396,6 +404,26 @@ calculate_naval_capacity_logistics_formula = {
 	# Prevent game.log tracking of ship count behind FOW
 	IF = {
 		LIMIT = { is_debug = yes }
-		calculate_naval_capacity_logistics_debug = yes
+		LCfN_calculate_naval_capacity_logistics_debug = yes
+	}
+}
+
+LCfN_monthly_convoy_simulation = {
+	IF = {
+		LIMIT = { 
+			has_game_rule = { rule = LCfN_safety_clamp_rule option = UNCLAMPED_PENALTY }
+			check_variable = { LCfN_icd_ncd_value < 0 } # Only for those over-capacity
+		}
+		# Logic: Simulate monthly IC. 
+		# (Total Dockyards * 2.5 IC/day * 30 Days) / 70 IC per convoy.
+		# Simplified: (Dockyards * 75) / 70
+		set_temp_variable = { var = monthly_convoy_income value = num_of_naval_factories } #
+		multiply_temp_variable = { var = monthly_convoy_income value = 75 }
+		divide_temp_variable = { var = monthly_convoy_income value = 70 }
+		
+		add_equipment_to_stockpile = {
+			type = convoy
+			amount = var:monthly_convoy_income
+		}
 	}
 }
