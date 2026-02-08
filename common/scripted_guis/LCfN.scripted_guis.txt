@@ -1,11 +1,9 @@
 scripted_gui = {
-    LCfN_naval_limits_deployment = { # 1. Production line View Container
+    LCfN_naval_limits_deployment = {
         context_type = player_context
-        # Matches the name in your .gui file
-        window_name = "LCfN_naval_count_loc_countryproductionlineview" 
+        window_name = "LCfN_naval_count_countryproductionlineview" 
         parent_window_name = countryproductionlineview
 
-        # Always show this (or add triggers if you want to hide it)
         visible = {
             always = yes
         }
@@ -16,33 +14,32 @@ scripted_gui = {
         	}
         }
     }
-    
-    LCfN_naval_limits_army_view = { # 2. Army View Container
-        context_type = player_context
-        # Matches the name in your .gui file
-        window_name = "LCfN_naval_count_loc_countrynavyview"
-        parent_window_name = countryarmyview
 
-        visible = {
-            always = no
-        }
-
-        effects = {
-        	background_click = {
-				LCfN_calculate_naval_capacity_logistics_formula = yes
-        	}
-        }
-    }
-    
-    LCfN_naval_limits_alert = { # 3. Top Bar Alert (!)
+    LCfN_naval_limits_alert = {
         context_type = player_context
-        # Matches the name in your .gui file
-        window_name = "LCfN_naval_count_loc_alert_container"
+        window_name = "LCfN_naval_count_alert_container"
         parent_window_token = top_bar
 
         visible = {
-            # Only show if ships > cap (The Red Zone)
-            check_variable = { num_ships > calculated_naval_cap }
+            has_dlc = "La Resistance"
+            check_variable = { current_ship_load > calculated_naval_cap }
+        }
+    }
+
+    LCfN_naval_limits_alert_non_LaR = {
+        context_type = player_context
+        window_name = "LCfN_naval_count_alert_container"
+        parent_window_token = top_bar
+
+        visible = {
+            NOT = { has_dlc = "La Resistance" }
+            check_variable = { current_ship_load > calculated_naval_cap }
+        }
+
+        properties = {
+            unit_limit_alert = {
+                x = -55
+            }
         }
     }
 }

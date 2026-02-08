@@ -411,7 +411,7 @@ LCfN_calculate_naval_capacity_logistics_formula = {
 LCfN_monthly_convoy_simulation = {
 	IF = {
 		LIMIT = { 
-			has_game_rule = { rule = LCfN_safety_clamp_rule option = UNCLAMPED_PENALTY }
+			NOT = { has_game_rule = { rule = LCfN_safety_clamp_rule option = CLAMP_ON } }
 			check_variable = { LCfN_icd_ncd_value < 0 } # Only for those over-capacity
 		}
 		# Logic: Simulate monthly IC. 
