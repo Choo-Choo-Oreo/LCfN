@@ -22,7 +22,7 @@ scripted_gui = {
 
         visible = {
             has_dlc = "La Resistance"
-            check_variable = { current_ship_load > calculated_naval_cap }
+            check_variable = { LCfN_current_ship_load > LCfN_calculated_naval_cap }
         }
     }
 
@@ -33,7 +33,7 @@ scripted_gui = {
 
         visible = {
             NOT = { has_dlc = "La Resistance" }
-            check_variable = { current_ship_load > calculated_naval_cap }
+            check_variable = { LCfN_current_ship_load > LCfN_calculated_naval_cap }
         }
 
         properties = {

@@ -8,6 +8,8 @@ name="Better Mechanics : Logistical Capacity for Navies"
 picture="thumbnail.png"
 path="mod/LCfN"
 dependencies={
+	"Better Mechanics : Battalion Limiter"
+	"Better Mechanics : Operational Capacity for Armies"
 	"Road to 56"
 	"The Road to 56"
 	"Road to 56 RP"
