@@ -1,5 +1,9 @@
 on_actions = {
 	on_startup = {
+		effect = { # Scripted Triggers Initialization
+			set_global_flag = is_LCfN_enabled
+		}
+
 		effect = {
 			every_possible_country = {
 				IF = {
