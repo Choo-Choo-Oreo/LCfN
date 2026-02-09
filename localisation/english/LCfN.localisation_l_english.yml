@@ -1,20 +1,20 @@
 ﻿l_english:
-  LCfN_naval_count_loc: "[LCfN_naval_count_loc]/[?calculated_naval_cap|H0]"
+  LCfN_naval_count: "[LCfN_naval_count_loc]/[?LCfN_calculated_naval_cap|Y0]"
   LCfN_naval_capacity_dynamic_modifier: "Naval Industrial Capacity"
   LCfN_naval_label: "§HNaval Industrial Capacity§!"
-  LCfN_naval_desc: "Your navy is supported by the combined output of your dockyards and factories. Exceeding this limit strains your maritime logistics.\n\n[LCfN_load_type_loc]: [LCfN_naval_count_loc]/[?calculated_naval_cap|H0]\n\n§HIndustrial Breakdown:§!\n - Naval Dockyards (x[?doc_weight_value|H1]): [?num_of_naval_factories|G0] (Value: [?nav_dockyards|H0])\n - Military Factories (x[?mil_weight_value|H1]): [?num_of_military_factories|G0] (Value: [?mil_factories|H0])\n - Civilian Factories (x[?civ_weight_value|H1]): [?num_of_civilian_factories|G0] (Value: [?civ_factories|H0])\n\n[LCfN_mobilization_loc][LCfN_upkeep_loc]§HCurrent Modifier:§!\n [?LCfN_icd_ncd_value|=%+1] Dockyard Output\n\n[LCfN_formula_loc]\n\n§GClick this indicator to refresh your logistics status immediately.§!"
+  LCfN_naval_desc: "Your navy is supported by the combined output of your dockyards and factories. Exceeding this limit strains your maritime logistics.\n\n[LCfN_load_type_loc]: [LCfN_naval_count_loc]/[?LCfN_calculated_naval_cap|Y0]\n\n§HIndustrial Breakdown:§!\n - Military Factories (§Yx§![?LCfN_mil_weight_value|Y1]): [?num_of_military_factories|G0] (Value: [?LCfN_mil_factories|Y0])\n - Civilian Factories (§Yx§![?LCfN_civ_weight_value|Y1]): [?num_of_civilian_factories|G0] (Value: [?LCfN_civ_factories|Y0])\n - Naval Dockyards (§Yx§![?LCfN_doc_weight_value|Y1]): [?num_of_naval_factories|G0] (Value: [?LCfN_nav_dockyards|Y0])\n\n[LCfN_mobilization_loc][LCfN_upkeep_loc]§HCurrent Modifier:§!\n [?LCfN_icd_ncd_value|=%+1] Dockyard Output\n\n[LCfN_formula_loc]\n\n§GClick this indicator to refresh your logistics status immediately.§!"
 
-  LCfN_load_weighted: "§HFleet Breakdown:§!\n - $battle_cruiser$ (x[?bc_weight_value|H1]): [?num_ships_with_type@battle_cruiser|G0] (Value: [?t_bc|H0])\n - $battleship$ (x[?bb_weight_value|H1]): [?num_ships_with_type@battleship|G0] (Value: [?t_bb|H0])\n - $carrier$ (x[?cv_weight_value|H1]): [?num_ships_with_type@carrier|G0] (Value: [?t_cv|H0])\n - $destroyer$ (x[?dd_weight_value|H1]): [?num_ships_with_type@destroyer|G0] (Value: [?t_dd|H0])\n - $heavy_cruiser$ (x[?ca_weight_value|H1]): [?num_ships_with_type@heavy_cruiser|G0] (Value: [?t_ca|H0])\n - $light_cruiser$ (x[?cl_weight_value|H1]): [?num_ships_with_type@light_cruiser|G0] (Value: [?t_cl|H0])\n - $submarine$ (x[?ss_weight_value|H1]): [?num_ships_with_type@submarine|G0] (Value: [?t_ss|H0])\n - Miscellaneous (x§H1.0§!): [?t_misc|G0]\n\nTotal Load"
+  LCfN_load_weighted: "§HFleet Breakdown:§!\n - $battle_cruiser$ (§Yx§![?LCfN_bc_weight_value|Y1]): [?num_ships_with_type@battle_cruiser|G0] (Value: [?LCfN_t_bc|Y0])\n - $battleship$ (§Yx§![?LCfN_bb_weight_value|Y1]): [?num_ships_with_type@battleship|G0] (Value: [?LCfN_t_bb|Y0])\n - $carrier$ (§Yx§![?LCfN_cv_weight_value|Y1]): [?num_ships_with_type@carrier|G0] (Value: [?LCfN_t_cv|Y0])\n - $destroyer$ (§Yx§![?LCfN_dd_weight_value|Y1]): [?num_ships_with_type@destroyer|G0] (Value: [?LCfN_t_dd|Y0])\n - $heavy_cruiser$ (§Yx§![?LCfN_ca_weight_value|Y1]): [?num_ships_with_type@heavy_cruiser|G0] (Value: [?LCfN_t_ca|Y0])\n - $light_cruiser$ (§Yx§![?LCfN_cl_weight_value|Y1]): [?num_ships_with_type@light_cruiser|G0] (Value: [?LCfN_t_cl|Y0])\n - $submarine$ (§Yx§![?LCfN_ss_weight_value|Y1]): [?num_ships_with_type@submarine|G0] (Value: [?LCfN_t_ss|Y0])\n - Miscellaneous (x§H1.0§!): [?LCfN_t_misc|G0]\n\nTotal Load"
   LCfN_load_standard: "Current Load"
 
-  LCfN_count_red: "§R[?current_ship_load|0]§!"
-  LCfN_count_yellow: "§H[?current_ship_load|0]§!"
-  LCfN_count_green: "§G[?current_ship_load|0]§!"
+  LCfN_count_red: "§R[?LCfN_current_ship_load|0]§!"
+  LCfN_count_yellow: "§H[?LCfN_current_ship_load|0]§!"
+  LCfN_count_green: "§G[?LCfN_current_ship_load|0]§!"
 
-  LCfN_mob_breakdown_desc: "§HIndustrial Mobilization:§!\n - Current Consumer Goods: [?current_cg_total|%Y]\n - Logistical Efficiency: [?econ_efficiency_factor|%G]\n\n§LHigh consumer demand reduces the efficiency of your naval logistics. Mobilize your economy to utilize your full industrial capacity.§!\n\n"
+  LCfN_mob_breakdown_desc: "§HIndustrial Mobilization:§!\n - Current Consumer Goods: [?LCfN_current_cg_total|%Y]\n - Industrial Efficiency: [?LCfN_econ_efficiency_factor|%G]\n\n§LHigh consumer demand reduces the efficiency of your naval logistics. Mobilize your economy to utilize your full industrial capacity.§!\n\n"
   LCfN_mob_disabled_desc: ""
 
-  LCfN_upkeep_desc: "§HInfrastructure Upkeep:§!\n - Strain Factor: [?infra_strain|H2]\n\n§LThe sheer scale of your dockyards creates logistical friction. Your efficiency bonus is divided by this factor to simulate infrastructure maintenance.§!\n\n"
+  LCfN_upkeep_desc: "§HInfrastructure Upkeep:§!\n - Strain Factor: [?LCfN_infra_strain|Y2]\n\n§LThe sheer scale of your dockyards creates logistical friction. Your efficiency bonus is divided by this factor to simulate infrastructure maintenance.§!\n\n"
   LCfN_upkeep_none: ""
 
   LCfN_linear_desc: "§LThis system uses a Linear curve. Efficiency changes at a flat, constant rate. Every ship over your capacity adds the exact same penalty, providing a predictable and stable experience.§!"
@@ -43,7 +43,7 @@
   LCfN_RULE_CLAMP_ON_DESC: "Prevents naval production penalties from exceeding -100%. This ensures that even the most overextended fleet can still eventually produce or repair ships, albeit very slowly."
   LCfN_RULE_CLAMP_OFF: "Disabled"
   LCfN_RULE_CLAMP_OFF_DESC: "Removes the safety floor. Extreme over-extension can lead to penalties far exceeding -100%, effectively halting all naval industrial output until the fleet is reduced."
-  LCfN_RULE_UNCLAMPED_PENALTY: "Hard Mode: Over-Capacity Focus"
+  LCfN_RULE_UNCLAMPED_PENALTY: "No Buffs: Over-Capacity Focus"
   LCfN_RULE_UNCLAMPED_PENALTY_DESC: "Removes all bonuses for being under-capacity. Penalties for exceeding naval logistical limits are now uncapped and can reach massive levels. To prevent total economic collapse, nations over-capacity receive a simulated trickle of convoys based on their total dockyard count."
 
   LCfN_RULE_MOBILIZATION: "Economic Mobilization Impact"

@@ -24,7 +24,7 @@ guiTypes = {
             textureFile = ""
             font = "hoi_16mbs"
             borderSize = { x = 0 y = 0 }
-            text = "LCfN_naval_count_loc"
+            text = "LCfN_naval_count"
             maxWidth = 64
             maxHeight = 10
             format = center

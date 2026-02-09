@@ -1,20 +1,20 @@
-﻿﻿l_simp_chinese:
-  LCfN_naval_count_loc: "[LCfN_naval_count_loc]/[?calculated_naval_cap|H0]"
+﻿l_simp_chinese:
+  LCfN_naval_count: "[LCfN_naval_count_loc]/[?LCfN_calculated_naval_cap|Y0]"
   LCfN_naval_capacity_dynamic_modifier: "海军工业产能"
   LCfN_naval_label: "§H海军工业产能§!"
-  LCfN_naval_desc: "您的海军由船坞和工厂的综合产出支撑。超过此上限会使您的海上后勤面临压力。\n\n[LCfN_load_type_loc]: [LCfN_naval_count_loc]/[?calculated_naval_cap|H0]\n\n§H工业构成明细:§!\n - 海军船坞 (x[?doc_weight_value|H1]): [?num_of_naval_factories|G0] (数值: [?nav_dockyards|H0])\n - 军用工厂 (x[?mil_weight_value|H1]): [?num_of_military_factories|G0] (数值: [?mil_factories|H0])\n - 民用工厂 (x[?civ_weight_value|H1]): [?num_of_civilian_factories|G0] (数值: [?civ_factories|H0])\n\n[LCfN_mobilization_loc][LCfN_upkeep_loc]§H当前修正:§!\n [?LCfN_icd_ncd_value|=%+1] 船坞产出\n\n[LCfN_formula_loc]\n\n§G点击此指示器可立即刷新您的后勤状态。§!"
+  LCfN_naval_desc: "您的海军由船坞和工厂的综合产出支撑。超过此上限会使您的海上后勤面临压力。\n\n[LCfN_load_type_loc]: [LCfN_naval_count_loc]/[?LCfN_calculated_naval_cap|Y0]\n\n§H工业构成明细:§!\n - 军用工厂 (§Yx§![?LCfN_mil_weight_value|Y1]): [?num_of_military_factories|G0] (数值: [?LCfN_mil_factories|Y0])\n - 民用工厂 (§Yx§![?LCfN_civ_weight_value|Y1]): [?num_of_civilian_factories|G0] (数值: [?LCfN_civ_factories|Y0])\n - 海军船坞 (§Yx§![?LCfN_doc_weight_value|Y1]): [?num_of_naval_factories|G0] (数值: [?LCfN_nav_dockyards|Y0])\n\n[LCfN_mobilization_loc][LCfN_upkeep_loc]§H当前修正:§!\n [?LCfN_icd_ncd_value|=%+1] 船坞产出\n\n[LCfN_formula_loc]\n\n§G点击此指示器可立即刷新您的后勤状态。§!"
 
-  LCfN_load_weighted: "§H舰队细分:§!\n - $battle_cruiser$ (x[?bc_weight_value|H1]): [?num_ships_with_type@battle_cruiser|G0] (数值: [?t_bc|H0])\n - $battleship$ (x[?bb_weight_value|H1]): [?num_ships_with_type@battleship|G0] (数值: [?t_bb|H0])\n - $carrier$ (x[?cv_weight_value|H1]): [?num_ships_with_type@carrier|G0] (数值: [?t_cv|H0])\n - $destroyer$ (x[?dd_weight_value|H1]): [?num_ships_with_type@destroyer|G0] (数值: [?t_dd|H0])\n - $heavy_cruiser$ (x[?ca_weight_value|H1]): [?num_ships_with_type@heavy_cruiser|G0] (数值: [?t_ca|H0])\n - $light_cruiser$ (x[?cl_weight_value|H1]): [?num_ships_with_type@light_cruiser|G0] (数值: [?t_cl|H0])\n - $submarine$ (x[?ss_weight_value|H1]): [?num_ships_with_type@submarine|G0] (数值: [?t_ss|H0])\n - 杂项 (x§H1.0§!): [?t_misc|G0]\n\n总负荷"
+  LCfN_load_weighted: "§H舰队细分:§!\n - $battle_cruiser$ (§Yx§![?LCfN_bc_weight_value|Y1]): [?num_ships_with_type@battle_cruiser|G0] (数值: [?LCfN_t_bc|Y0])\n - $battleship$ (§Yx§![?LCfN_bb_weight_value|Y1]): [?num_ships_with_type@battleship|G0] (数值: [?LCfN_t_bb|Y0])\n - $carrier$ (§Yx§![?LCfN_cv_weight_value|Y1]): [?num_ships_with_type@carrier|G0] (数值: [?LCfN_t_cv|Y0])\n - $destroyer$ (§Yx§![?LCfN_dd_weight_value|Y1]): [?num_ships_with_type@destroyer|G0] (数值: [?LCfN_t_cl|Y0])\n - $heavy_cruiser$ (§Yx§![?LCfN_ca_weight_value|Y1]): [?num_ships_with_type@heavy_cruiser|G0] (数值: [?LCfN_t_ca|Y0])\n - $light_cruiser$ (§Yx§![?LCfN_cl_weight_value|Y1]): [?num_ships_with_type@light_cruiser|G0] (数值: [?LCfN_t_cl|Y0])\n - $submarine$ (§Yx§![?LCfN_ss_weight_value|Y1]): [?num_ships_with_type@submarine|G0] (数值: [?LCfN_t_ss|Y0])\n - 杂项 (x§H1.0§!): [?LCfN_t_misc|G0]\n\n总负荷"
   LCfN_load_standard: "当前负荷"
 
-  LCfN_count_red: "§R[?current_ship_load|0]§!"
-  LCfN_count_yellow: "§H[?current_ship_load|0]§!"
-  LCfN_count_green: "§G[?current_ship_load|0]§!"
+  LCfN_count_red: "§R[?LCfN_current_ship_load|0]§!"
+  LCfN_count_yellow: "§H[?LCfN_current_ship_load|0]§!"
+  LCfN_count_green: "§G[?LCfN_current_ship_load|0]§!"
 
-  LCfN_mob_breakdown_desc: "§H工业动员:§!\n - 当前消费品: [?current_cg_total|%Y]\n - 后勤效率: [?econ_efficiency_factor|%G]\n\n§L高消费品需求会降低海军后勤效率。动员您的经济以充分利用工业产能。§!\n\n"
+  LCfN_mob_breakdown_desc: "§H工业动员:§!\n - 当前消费品: [?LCfN_current_cg_total|%Y]\n - 后勤效率: [?LCfN_econ_efficiency_factor|%G]\n\n§L高消费品需求会降低海军后勤效率。动员您的经济以充分利用工业产能。§!\n\n"
   LCfN_mob_disabled_desc: ""
 
-  LCfN_upkeep_desc: "§H基础设施维护:§!\n - 压力因子: [?infra_strain|H2]\n\n§L巨大规模的船坞会产生后勤摩擦。您的效率奖励将除以此因子，以模拟基础设施维护成本。§!\n\n"
+  LCfN_upkeep_desc: "§H基础设施维护:§!\n - 压力因子: [?LCfN_infra_strain|Y2]\n\n§L巨大规模的船坞会产生后勤摩擦。您的效率奖励将除以此因子，以模拟基础设施维护成本。§!\n\n"
   LCfN_upkeep_none: ""
 
   LCfN_linear_desc: "§L此系统使用线性曲线。效率以固定速率变化。每艘超过上限的船只都会增加相同的惩罚，提供稳定且可预测的体验。§!"

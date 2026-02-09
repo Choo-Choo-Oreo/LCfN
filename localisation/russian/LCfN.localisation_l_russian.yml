@@ -1,20 +1,20 @@
 ﻿l_russian:
-  LCfN_naval_count_loc: "[LCfN_naval_count_loc]/[?calculated_naval_cap|H0]"
+  LCfN_naval_count: "[LCfN_naval_count_loc]/[?LCfN_calculated_naval_cap|Y0]"
   LCfN_naval_capacity_dynamic_modifier: "Морской промышленный потенциал"
   LCfN_naval_label: "§HМорской промышленный потенциал§!"
-  LCfN_naval_desc: "Ваш флот поддерживается за счет совокупной мощности ваших верфей и заводов. Превышение этого лимита создает нагрузку на вашу морскую логистику.\n\n[LCfN_load_type_loc]: [LCfN_naval_count_loc]/[?calculated_naval_cap|H0]\n\n§HПромышленная структура:§!\n - Морские верфи (x[?doc_weight_value|H1]): [?num_of_naval_factories|G0] (Значение: [?nav_dockyards|H0])\n - Военные заводы (x[?mil_weight_value|H1]): [?num_of_military_factories|G0] (Значение: [?mil_factories|H0])\n - Гражданские заводы (x[?civ_weight_value|H1]): [?num_of_civilian_factories|G0] (Значение: [?civ_factories|H0])\n\n[LCfN_mobilization_loc][LCfN_upkeep_loc]§HТекущий модификатор:§!\n [?LCfN_icd_ncd_value|=%+1] Производительность верфей\n\n[LCfN_formula_loc]\n\n§GНажмите на этот индикатор, чтобы немедленно обновить статус логистики.§!"
+  LCfN_naval_desc: "Ваш флот поддерживается за счет совокупной мощности ваших верфей и заводов. Превышение этого лимита создает нагрузку на вашу морскую логистику.\n\n[LCfN_load_type_loc]: [LCfN_naval_count_loc]/[?LCfN_calculated_naval_cap|Y0]\n\n§HПромышленная структура:§!\n - Военные заводы (§Yx§![?LCfN_mil_weight_value|Y1]): [?num_of_military_factories|G0] (Значение: [?LCfN_mil_factories|Y0])\n - Гражданские заводы (§Yx§![?LCfN_civ_weight_value|Y1]): [?num_of_civilian_factories|G0] (Значение: [?LCfN_civ_factories|Y0])\n - Морские верфи (§Yx§![?LCfN_doc_weight_value|Y1]): [?num_of_naval_factories|G0] (Значение: [?LCfN_nav_dockyards|Y0])\n\n[LCfN_mobilization_loc][LCfN_upkeep_loc]§HТекущий модификатор:§!\n [?LCfN_icd_ncd_value|=%+1] Производительность верфей\n\n[LCfN_formula_loc]\n\n§GНажмите на этот индикатор, чтобы немедленно обновить статус логистики.§!"
 
-  LCfN_load_weighted: "§HСостав флота:§!\n - $battle_cruiser$ (x[?bc_weight_value|H1]): [?num_ships_with_type@battle_cruiser|G0] (Значение: [?t_bc|H0])\n - $battleship$ (x[?bb_weight_value|H1]): [?num_ships_with_type@battleship|G0] (Значение: [?t_bb|H0])\n - $carrier$ (x[?cv_weight_value|H1]): [?num_ships_with_type@carrier|G0] (Значение: [?t_cv|H0])\n - $destroyer$ (x[?dd_weight_value|H1]): [?num_ships_with_type@destroyer|G0] (Значение: [?t_dd|H0])\n - $heavy_cruiser$ (x[?ca_weight_value|H1]): [?num_ships_with_type@heavy_cruiser|G0] (Значение: [?t_ca|H0])\n - $light_cruiser$ (x[?cl_weight_value|H1]): [?num_ships_with_type@light_cruiser|G0] (Значение: [?t_cl|H0])\n - $submarine$ (x[?ss_weight_value|H1]): [?num_ships_with_type@submarine|G0] (Значение: [?t_ss|H0])\n - Прочее (x§H1.0§!): [?t_misc|G0]\n\nОбщая нагрузка"
+  LCfN_load_weighted: "§HСостав флота:§!\n - $battle_cruiser$ (§Yx§![?LCfN_bc_weight_value|Y1]): [?num_ships_with_type@battle_cruiser|G0] (Значение: [?LCfN_t_bc|Y0])\n - $battleship$ (§Yx§![?LCfN_bb_weight_value|Y1]): [?num_ships_with_type@battleship|G0] (Значение: [?LCfN_t_bb|Y0])\n - $carrier$ (§Yx§![?LCfN_cv_weight_value|Y1]): [?num_ships_with_type@carrier|G0] (Значение: [?LCfN_t_cv|Y0])\n - $destroyer$ (§Yx§![?LCfN_dd_weight_value|Y1]): [?num_ships_with_type@destroyer|G0] (Значение: [?LCfN_t_dd|Y0])\n - $heavy_cruiser$ (§Yx§![?LCfN_ca_weight_value|Y1]): [?num_ships_with_type@heavy_cruiser|G0] (Значение: [?LCfN_t_ca|Y0])\n - $light_cruiser$ (§Yx§![?LCfN_cl_weight_value|Y1]): [?num_ships_with_type@light_cruiser|G0] (Значение: [?LCfN_t_cl|Y0])\n - $submarine$ (§Yx§![?LCfN_ss_weight_value|Y1]): [?num_ships_with_type@submarine|G0] (Значение: [?LCfN_t_ss|Y0])\n - Прочее (x§H1.0§!): [?LCfN_t_misc|G0]\n\nОбщая нагрузка"
   LCfN_load_standard: "Текущая нагрузка"
 
-  LCfN_count_red: "§R[?current_ship_load|0]§!"
-  LCfN_count_yellow: "§H[?current_ship_load|0]§!"
-  LCfN_count_green: "§G[?current_ship_load|0]§!"
+  LCfN_count_red: "§R[?LCfN_current_ship_load|0]§!"
+  LCfN_count_yellow: "§H[?LCfN_current_ship_load|0]§!"
+  LCfN_count_green: "§G[?LCfN_current_ship_load|0]§!"
 
-  LCfN_mob_breakdown_desc: "§HПромышленная мобилизация:§!\n - Текущие товары народного потребления: [?current_cg_total|%Y]\n - Эффективность логистики: [?econ_efficiency_factor|%G]\n\n§LВысокий спрос на потребительские товары снижает эффективность вашей морской логистики. Мобилизуйте свою экономику, чтобы полностью использовать промышленный потенциал.§!\n\n"
+  LCfN_mob_breakdown_desc: "§HПромышленная мобилизация:§!\n - Текущие товары народного потребления: [?LCfN_current_cg_total|%Y]\n - Эффективность логистики: [?LCfN_econ_efficiency_factor|%G]\n\n§LВысокий спрос на потребительские товары снижает эффективность вашей морской логистики. Мобилизуйте свою экономику, чтобы полностью использовать промышленный потенциал.§!\n\n"
   LCfN_mob_disabled_desc: ""
 
-  LCfN_upkeep_desc: "§HСодержание инфраструктуры:§!\n - Фактор нагрузки: [?infra_strain|H2]\n\n§LОгромный масштаб ваших верфей создает логистическое трение. Ваш бонус к эффективности делится на этот фактор для имитации затрат на обслуживание инфраструктуры.§!\n\n"
+  LCfN_upkeep_desc: "§HСодержание инфраструктуры:§!\n - Фактор нагрузки: [?LCfN_infra_strain|Y2]\n\n§LОгромный масштаб ваших верфей создает логистическое трение. Ваш бонус к эффективности делится на этот фактор для имитации затрат на обслуживание инфраструктуры.§!\n\n"
   LCfN_upkeep_none: ""
 
   LCfN_linear_desc: "§LЭта система использует линейную кривую. Эффективность изменяется с постоянной скоростью. Каждый корабль сверх лимита добавляет одинаковый штраф, обеспечивая предсказуемость.§!"

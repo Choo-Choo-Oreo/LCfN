@@ -67,25 +67,6 @@ LCfN_safety_clamp_rule = {
 	}
 }
 
-LCfN_mobilization_scaling_rule = {
-	name = "LCfN_RULE_MOBILIZATION"
-	group = "RULE_GROUP_GAMEPLAY"
-	icon = GFX_lend_lease
-
-	default = {
-		name = MOB_ON
-		text = "LCfN_RULE_MOB_ON"
-		desc = "LCfN_RULE_MOB_ON_DESC"
-		allow_achievements = yes
-	}
-	option = {
-		name = MOB_OFF
-		text = "LCfN_RULE_MOB_OFF"
-		desc = "LCfN_RULE_MOB_OFF_DESC"
-		allow_achievements = no
-	}
-}
-
 LCfN_weight_rule = {
 	name = "LCfN_RULE_WEIGHTING"
 	group = "RULE_GROUP_GAMEPLAY"
@@ -101,6 +82,25 @@ LCfN_weight_rule = {
 		name = WEIGHT_OFF
 		text = "LCfN_RULE_WEIGHT_OFF"
 		desc = "LCfN_RULE_WEIGHT_OFF_DESC"
+		allow_achievements = no
+	}
+}
+
+LCfN_mobilization_scaling_rule = {
+	name = "LCfN_RULE_MOBILIZATION"
+	group = "RULE_GROUP_GAMEPLAY"
+	icon = GFX_lend_lease
+
+	default = {
+		name = MOB_ON
+		text = "LCfN_RULE_MOB_ON"
+		desc = "LCfN_RULE_MOB_ON_DESC"
+		allow_achievements = yes
+	}
+	option = {
+		name = MOB_OFF
+		text = "LCfN_RULE_MOB_OFF"
+		desc = "LCfN_RULE_MOB_OFF_DESC"
 		allow_achievements = no
 	}
 }
