@@ -48,16 +48,16 @@ LCfN_scaling_logic_rule = {
 	icon = GFX_game_rule_scaling_calculation
 
 	default = {
+		name = LOGIC_PERCENT
+		text = "LCfN_RULE_PERCENT"
+		desc = "LCfN_RULE_PERCENT_DESC"
+		allow_achievements = yes
+	}
+	option = {
 		name = LOGIC_DISTANCE
 		text = "LCfN_RULE_DISTANCE"
 		desc = "LCfN_RULE_DISTANCE_DESC"
 		allow_achievements = yes
-	}
-	option = {
-		name = LOGIC_PERCENT
-		text = "LCfN_RULE_PERCENT"
-		desc = "LCfN_RULE_PERCENT_DESC"
-		allow_achievements = no
 	}
 }
 
