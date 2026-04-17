@@ -65,7 +65,6 @@ For specific requests regarding this mod and my other projects, join my [url=htt
 
 [h2]Support the Developer[/h2]
 If you enjoy the work and want to support future development:
-[url=ko-fi.com/choo_choo_oreo] ☕ Commission Me on Ko-Fi[/url], Commission me to update or port HOI4 mods.
 [url=patreon.com/Choo_Choo_Oreo] 🎖️ Support Me on Patreon[/url], I post updates for my main mod here.
 
 [h1]Check out my other mods![/h1]
